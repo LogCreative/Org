@@ -1,4 +1,4 @@
-%\input{../header.tex}
+% \input{../header.tex}
 \begin{description}
 \item[8086] 16-bit, 20-bit address.
 \item[8088] 16-bit internal, 8-bit external.
@@ -38,7 +38,15 @@
 		Offset register & IP & SI,DI,BX & SI,DI,BX & SP,BP \\
 		\hline
 	\end{tabular}
-	
+	\caption{Flag 寄存器}
+	\ttfamily
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		15 & 14 & 13 & 12 & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0 \\
+		\hline
+		R & R & R & R & OF & DF & IF & TF & SF & ZF & U & AF & U & PF & U & CF \\
+		\hline
+	\end{tabular}
 \end{table*}
 
 双工作模式
@@ -87,6 +95,22 @@
 	\end{tabular}
 \end{table*}
 
+\begin{table*}
+	\centering
+	\caption{MOV 指令}
+	\begin{tabular}{|>{\ttfamily}l|>{\ttfamily}l|>{\ttfamily}l|}
+		\hline
+		\bfseries Instruction & \bfseries Segment Used & \bfseries Default Segment \\
+		\hline
+		MOV AX, CS:[BP] & CS:BP & SS:BP \\
+		MOV DX, SS:[SI] & SS:SI	& DS:SI \\
+		MOV AX, DS:[BP] & DS:BP & SS:BP \\
+		MOV CX, ES:[BX]+12 & ES:BX+12 & DS:BX+12 \\
+		MOV SS:[BX][DI]+32, AX & SS:BX+DI+32 & DS:BX+DI+32 \\
+		\hline
+	\end{tabular}
+\end{table*}
+
 %\begin{figure}[H]
 %	\centering
 %	\caption{8086/88 周期}
@@ -113,4 +137,24 @@ AD15～AD0在T2～T4期间送上欲输出的数据,而无高阻态.
 \item DT/R在整个总线周期内保持高电平,表示本总线周期为写周期.在接有数据总线收发器的系统中,用来控制数据传输方向.
 \end{enumerate}
 
-%\input{../ending.tex}
+条件符：
+\begin{description}
+	\item[CF](Carry Flag): 进位符 set whenever there is a carry out, from d7 after a 8-bit op, from d15 after a 16-bit op
+	\item[PF](Parity Flag): 校验符 the parity of the op result’s low-order byte,  set when the byte has an even number of 1s （偶1为1）
+	\item[AF](Auxiliary Carry Flag): 辅助进位符 set if there is a carry from d3 to d4, used by BCD-related arithmetic
+	\item[ZF](Zero Flag): 零 set when the result is zero
+	\item[SF](Sign Flag): 符号符 copied from the sign bit (the most significant bit) after op
+	\item[OF](Overflow Flag): 溢出符 set when the result of a signed number operation is too large, causing the sign bit error
+\end{description}
+控制符：
+\begin{description}
+	\item[IF] (Interrupt Flag): 中断符 set or cleared to enable or disable only the external maskable interrupt requests
+	 
+	{\scriptsize
+		After reset, all flags are cleared which means you (as a programmer) have to set IF in your program if allow INTR.
+	}
+	\item[DF] (Direction Flag): 方向符 indicates the direction of string operations
+	\item[TF] (Trap Flag): 陷阱符 when set it allows the program to single-step, meaning to execute one instruction at a time for debugging purposes
+\end{description}
+
+% \input{../ending.tex}

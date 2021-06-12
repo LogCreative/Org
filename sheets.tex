@@ -5,6 +5,34 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{multicol}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{caption}
+\definecolor{grey}{rgb}{0.8,0.8,0.8}
+\definecolor{darkgreen}{rgb}{0,0.3,0}
+\definecolor{darkblue}{rgb}{0,0,0.3}
+\lstset{%
+    numbers=left, %行号
+    numberstyle=\scriptsize\color{grey},
+    showstringspaces=false,
+    showspaces=false,%
+    tabsize=4,%
+    frame=shadowbox,%
+    basicstyle={\ttfamily\normalsize},%
+    keywordstyle=\color{blue!80!black}\bfseries,%
+    identifierstyle=,%
+    commentstyle=\color{green!50!blue}\itshape,%
+    stringstyle=\color{green!50!black},%
+    rulesepcolor=\color{gray!20!white},
+    breaklines,
+    columns=flexible,
+    extendedchars=false,
+    %mathescape=true,
+    language=[x86masm]Assembler,
+}
+\providecommand{\code}[2]{\lstinputlisting[caption=\href{run:code/#1}{\ttfamily #1}]{code/#1}}
+\usepackage{enumitem}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins,breakable,raster}
 \usepackage{array}
@@ -14,16 +42,14 @@
 		before=\par\smallskip,after=\par\smallskip},
 	every box on layer 2/.style={reset,every box,colback=yellow!10!white,
 		drop fuzzy shadow}}
-
 \geometry{left=1cm,right=1cm,top=1cm,bottom=1.5cm}
 \graphicspath{{img/}}
 %\def\img#1#2{\begin{figure}[htb]\centering\includegraphics[width=0.7\columnwidth]{img/#1.png}\caption{#2}\label{fig:#1}\end{figure}}
 \def\img#1#2{\begin{tcolorbox}[title=#2]\includegraphics[width=\textwidth]{#1.png}\end{tcolorbox}}
 \def\pdf#1#2{\begin{tcolorbox}[title=#2]\includegraphics[width=\textwidth]{#1.pdf}\end{tcolorbox}}
-\usepackage{enumitem}
 \setlist{nosep}
 \begin{document}
-	\begin{CJK}{UTF8}{gbsn}
+	\begin{CJK}{UTF8}{song}
 	\title{计算机组成}
 	\date{}
 	\begin{multicols}{3}
@@ -113,4 +139,7 @@
 %		\end{multicols}
 	\end{twocolumn}
 	\end{CJK}
+	% \begin{CJK}{UTF8}{song}
+	% 	\code{simpleio.asm}
+	% \end{CJK}
 \end{document}
