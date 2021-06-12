@@ -33,7 +33,7 @@
 		\section{存储与I/O}
 		\input{chapter/memio.tex}
 		\section{80x86}
-		%\input{chapter/8086.tex}
+		\input{chapter/8086.tex}
 	\end{multicols}
 	\begin{twocolumn}
 %		\begin{multicols}{3}
@@ -84,6 +84,31 @@
 		\pdf{DMAalter}{DMA架构}
 		\img{8086}{8086内部结构}
 		\img{8086l}{8086配置图}
+		\begin{tcolorbox}[title=逻辑门电路]
+			\centering
+			\includegraphics[width=0.75\textwidth]{CMOS.png}
+%			\includegraphics[width=\textwidth]{logic.jpg}
+			\begin{tabular}{|c|c|c|c|c|c|c|c|}
+				\hline
+				\multicolumn{2}{|c|}{input} & \multicolumn{6}{c|}{output} \\
+				\hline
+				$ a $ & $ b $  & $ ab $ & $ a+b $ & $ \overline{ab} $ & $ \overline{a+b} $& $\overline{a}$ & $a\oplus b$ \\
+				\hline
+				0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 \\
+				\hline
+				0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+				\hline
+				1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 \\
+				\hline
+				1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+				\hline
+			\end{tabular}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=锁存器和数据传输器]
+			\img{latch}{74LS373 D Latch}
+			\img{dt}{Data Bus Transceiver}
+		\end{tcolorbox}
+		\img{buscycle}{8086/88 总线周期}
 %		\end{tcbraster}
 %		\end{multicols}
 	\end{twocolumn}

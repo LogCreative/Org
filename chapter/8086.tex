@@ -1,4 +1,4 @@
-\input{../header.tex}
+%\input{../header.tex}
 \begin{description}
 \item[8086] 16-bit, 20-bit address.
 \item[8088] 16-bit internal, 8-bit external.
@@ -30,6 +30,15 @@
 		Flag & 16 & \texttt{FR}(Flag Register) \\
 		\hline
 	\end{tabular}
+	\caption{段偏移寄存器}
+	\begin{tabular}{|>{\bfseries}c|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|}
+		\hline
+		Segment register & CS & DS & ES & SS \\
+		\hline
+		Offset register & IP & SI,DI,BX & SI,DI,BX & SP,BP \\
+		\hline
+	\end{tabular}
+	
 \end{table*}
 
 双工作模式
@@ -67,17 +76,41 @@
 		\hline
 		$\tt HOLD$ & HOLD the bus request &  & hold \\
 		\hline
-		HOLDA & HoLD request acknowledge &  & hold req ack \\
+		HLDA & HoLD request acknowledge &  & hold req ack \\
 		\hline
 		$\tt \overline{TEST}$ & for debug & test &  \\
 		\hline
 		READY & mem/IO is READY for transfer &  & ready \\
 		\hline
-		RESET & reset the CPU, IP, DS, SS, ES and 6 inst in instruction queue are cleared &  & CS=0FFFFH \\
+		RESET & reset the CPU, IP, DS, SS, ES and 6 inst in instruction queue are cleared &  & CS=\texttt{0FFFFH} \\
 		\hline
 	\end{tabular}
 \end{table*}
 
+%\begin{figure}[H]
+%	\centering
+%	\caption{8086/88 周期}
+%	\includegraphics[width=\textwidth]{buscycle.png}
+%\end{figure}
+8086读周期时序:
+在8086读周期内,有关总线信号的变化如下:
+\begin{enumerate}
+\item M/IO在整个读周期保持有效,当进行存储器读操作时,M/IO为高电平;当进行I/O端口读操作时,M/IO为低电平.
+\item A19/S6～A16/S3是在T1期间,输出CPU要读取的存储单元的地址高4位.T2～T4期间输出状态信息S6～S3.
+\item BHE/S7在T1期间输出BHE有效信号(BHE为低电平),表示高8位数据总线上的信息可以使用,BHE信号通常作为奇地址存储体的选择信号(偶地址存储体的选择信号是最低地址位A0).T2～T4期间输出高电平.
+\item ADl5～AD0在T1期间输出CPU要读取的存储单元或I/O端口的地址A15～A0.T2期间为高阻态,T3～T4期间,存储单元或I/O端口将数据送上数据总线.CPU从ADl5～AD0上接收数据.
+\item ALE:在T1期间地址锁存有效信号,为一正脉冲,系统中的地址锁存器正是利用该脉冲的下降沿来锁存A19/S6～A16/S3,ADl5～AD0中的20位地址信息以及BHE.
+\item RD在T2期间输出低电平,送到被选中的存储器或I/O接口.要注意的是,只有被地址信号选中的存储单元或I/O端口,才会被RD信号从中读出数据(数据送上数据总线ADl5～AD0).
+\item DT/R在整个总线周期内保持低电平,表示本总线周期为读周期.在接有数据总线收发器的系统中,用来控制数据传输的方向.
+\item DEN在T2～T3期间输出有效低电平,表示数据有效.在接有数据总线收发器的系统中,用来实现数据的选通.
+\end{enumerate}
 
+8086写周期时序总线写操作的时序与读操作时序相似,其不同处在于:
+\begin{enumerate}
+\item 	
+AD15～AD0在T2～T4期间送上欲输出的数据,而无高阻态.
+\item WR在T2～T4期间输出有效低电平,该信号送到所有的存储器和I/O接口.要注意的是,只有被地址信号选中的存储单元或I/O端口才会被WR信号写入数据.
+\item DT/R在整个总线周期内保持高电平,表示本总线周期为写周期.在接有数据总线收发器的系统中,用来控制数据传输方向.
+\end{enumerate}
 
-\input{../ending.tex}
+%\input{../ending.tex}
