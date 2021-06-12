@@ -5,36 +5,28 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{multicol}
-\usepackage{listings}
 \usepackage{xcolor}
 \usepackage[colorlinks]{hyperref}
 \usepackage{caption}
 \definecolor{grey}{rgb}{0.8,0.8,0.8}
 \definecolor{darkgreen}{rgb}{0,0.3,0}
 \definecolor{darkblue}{rgb}{0,0,0.3}
-\lstset{%
-    numbers=left, %行号
-    numberstyle=\scriptsize\color{grey},
-    showstringspaces=false,
-    showspaces=false,%
-    tabsize=4,%
-    frame=shadowbox,%
-    basicstyle={\ttfamily\normalsize},%
-    keywordstyle=\color{blue!80!black}\bfseries,%
-    identifierstyle=,%
-    commentstyle=\color{green!50!blue}\itshape,%
-    stringstyle=\color{green!50!black},%
-    rulesepcolor=\color{gray!20!white},
-    breaklines,
-    columns=flexible,
-    extendedchars=false,
-    %mathescape=true,
-    language=[x86masm]Assembler,
-}
-\providecommand{\code}[2]{\lstinputlisting[caption=\href{run:code/#1}{\ttfamily #1}]{code/#1}}
 \usepackage{enumitem}
 \usepackage{tcolorbox}
-\tcbuselibrary{skins,breakable,raster}
+\tcbuselibrary{skins,breakable,raster,listingsutf8}
+\lstset{language=[x86masm]Assembler}
+\newtcbinputlisting{code}[3]{colframe=yellow!30!black,listing options={showstringspaces=false,
+		showspaces=false,%
+		tabsize=2,%
+		basicstyle={\ttfamily\normalsize},%
+		keywordstyle=\color{blue!80!black}\bfseries,%
+		identifierstyle=,%
+		commentstyle=\color{green!50!blue}\itshape,%
+		stringstyle=\color{green!50!black},%
+		rulesepcolor=\color{gray!20!white},
+		breaklines,
+		columns=flexible,
+		extendedchars=false},listing file={code/#1},title={\textbf{#2}\\\small #3},listing only, breakable}
 \usepackage{array}
 \tcbset{fonttitle=\bfseries,breakable,
 	colback=white,
@@ -60,6 +52,8 @@
 		\input{chapter/memio.tex}
 		\section{80x86}
 		\input{chapter/8086.tex}
+		\section{汇编}
+		\input{chapter/assemb.tex}
 	\end{multicols}
 	\begin{twocolumn}
 %		\begin{multicols}{3}
@@ -135,6 +129,9 @@
 			\img{dt}{Data Bus Transceiver}
 		\end{tcolorbox}
 		\img{buscycle}{8086/88 总线周期}
+		\code{simpleio.asm}{实验一}{读取开关量状态取反后送显示}
+		\code{traffic.asm}{实验一}{交通灯}
+		\code{converter.asm}{样例}{转换小写至大写}
 %		\end{tcbraster}
 %		\end{multicols}
 	\end{twocolumn}

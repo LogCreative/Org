@@ -1,0 +1,206 @@
+\begin{table}[H]
+	\centering
+	\caption{MODEL 大小}
+	\begin{tabular}{|>{\ttfamily}c|c|c|}
+		\hline
+		.MODEL & code$\sim$64KB & data$\sim$64KB \\
+		\hline
+		SMALL & $>$& $\leq$ \\
+		MEDIUM & $>$ & $\leq$ \\
+		COMPACT & $\leq$ & $>$\\
+		LARGE &$>$ &$><$ \\
+		HUGE &$>$ &$>$ \\
+		TINY &\multicolumn{2}{c|}{$<$} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table*}
+	\begin{minipage}{0.6\textwidth}
+		\centering
+		\caption{PROC 范围}
+		\begin{tabular}{|>{\ttfamily}c|c|c|}
+			\hline
+			PROC & IP & current code segment \\
+			\hline
+			SHORT & -128$\sim$127($\pm$1B) &  \\
+			\hline
+			NEAR & -32768$\sim$32767($\pm$2B) & within \\
+			\hline
+			FAR & changed along with CS & outside \\
+			\hline
+		\end{tabular}\\
+		\raggedright
+		\texttt{CALL} \textit{procedure}\\
+		\raggedright\texttt{RET}\\
+		\centering
+		\caption{数据定义}
+		\begin{tabular}{|>{\ttfamily}c|l|>{\ttfamily}l|}
+			\hline
+			&\bfseries 描述 &\bfseries 示例 \\
+			\hline
+			ORG & 指定开始偏移量 & ORG 10H \\
+			\hline
+			DB & 分配字节大小的块，依次写入 & Z DB "Good Morning" \\
+			\hline
+			EQU & 定义常量 & NUM EQU 234 \\
+			\hline
+			DUP & 复制字符 & x DB 6 DUP(23H) \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\raggedright
+		\texttt{CMP} op1,op2\\
+		\centering
+		\caption{跳转指令}
+		\begin{tabular}{|>{\ttfamily}l|>{\ttfamily}l|c|}
+			\hline
+			Mnemonic & Condition & op1$\sim$op2 \\
+			\hline
+			\multicolumn{3}{|c|}{Signed} \\
+			\hline
+			JA/JNBE & CF=0 \& ZF=0 & $>$ \\
+			JAE/JNB & CF=0 & $\geq$ \\
+			JB/JNAE & CF=1 & $<$\\
+			JBE/JNA & CF=1 | ZF=1 & $\leq$ \\
+			\hline
+			\multicolumn{3}{|c|}{Unsigned} \\
+			\hline
+			JG/JNLE & SF=OF \& ZF=0 & $>$ \\
+			JGE/JNL & SF=OF &$\geq$ \\
+			JL/JNGE & SF $\oplus$ OF & $<$\\
+			JLE/JNG & ZF=1 | SF $\oplus$ OF & $\leq$ \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+\end{table*}
+
+\texttt{PTR} 可以暂时性更改一个变量的类型。
+\begin{verbatim}
+	DATA1  DB  10H,20H,30H  ;  
+	DATA2  DW  4023H,0A845H 
+
+	MOV  BX, WORD PTR DATA1	
+	; 2010H -> BX
+	MOV  AL, BYTE PTR DATA2	
+	; 23H -> AL 
+	MOV  WORD PTR [BX], 10H 
+	; [BX],[BX+1] <- 0010H
+	
+	JMP FAR PTR aLabel
+\end{verbatim}
+
+8086 中没有内存到内存的直接运算。
+
+除法运算比较特殊。
+
+\begin{table}[H]
+\begin{tabular}{|c|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|}
+	\hline
+	type & op1 & op2 & $\frac{\tt op1}{\tt op2}$ & mod \\
+	\hline
+	B/B & AL & src & AL & AH \\
+	\hline
+	W/W & AX & src & AX & DX \\
+	\hline
+	W/B & AX & src & AL & AH \\
+	\hline
+	DW/W & DX,AX & src & AX & DX \\
+	\hline
+\end{tabular}
+\end{table}
+
+跳转前的比较：\texttt{CMP dest,src}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|}
+		\hline
+		& CF & ZF \\
+		\hline
+		dest > src & 0 & 0 \\
+		\hline
+		dest = src & 0 & 1 \\
+		\hline
+		dest < src & 1 & 0 \\
+		\hline
+	\end{tabular}
+\end{table}
+不需要比较的跳转：
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|>{\ttfamily}l|>{\ttfamily}l|l|}
+		\hline
+		Mnemonic & Condition & 跳转条件 \\
+		\hline
+		JNC & CF=0 & 不进位 \\
+		\hline
+		JNE/JNZ & ZF=0 & 不等于0 \\
+		\hline
+		JNO & OF=0 & 没有溢出 \\
+		\hline
+		JNP/JPO & PF=0 & 奇校验 \\
+		\hline
+		JNS & SF=0 & 不是负数 \\
+		\hline
+		JP & OF=1 & 溢出 \\
+		\hline
+		JP/JPE & PF=1 & 偶校验 \\
+		\hline
+		JS & SF=1 & 负数 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table*}
+	\begin{minipage}{0.5\textwidth}
+	\centering
+	\caption{算术运算}
+	\begin{tabular}{|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}l|}
+		\hline
+		& op1 & ,op2 & calc \\
+		\hline
+		ADD & dest & src & dest = dest src \\
+		\hline
+		ADC & dest & src & dest = dest + src + CF \\
+		\hline
+		SUB & dest & src & dest = dest - src \\
+		\hline
+		SBB & dest & src & dest = dest - src - CF \\
+		\hline
+		INC & dest &  & dest = dest + 1 \\
+		\hline
+		DEC & dest &  & dest = dest -  1 \\
+		\hline
+		MUL & src &  & (DX,) AX = src * AX \\
+		\hline
+		DIV & src &  & AL = AL / src, AH = AL mod src* \\
+		\hline
+	\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\caption{逻辑运算}
+		\begin{tabular}{|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}l|}
+			\hline
+			& op1 & ,op2 & calc \\
+			\hline
+			AND & dest & src & dest = dest \& src \\
+			\hline
+			OR & dest & src & dest = dest | src \\
+			\hline
+			XOR & dest & src & dest = dest $\oplus$ src \\
+			\hline
+			NOT & dest &  & dest = $\sim$dest \\
+			\hline
+			SHR & dest & reg & dest = dest >> reg(zero-ext) \\
+			\hline
+			SHL & dest & reg & dest = dest << reg \\
+			\hline
+			ROL & dest & reg & dest = >> dest << reg \\
+			\hline
+			RCL & dest & reg & dest = >> CF << dest << reg \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+\end{table*}
