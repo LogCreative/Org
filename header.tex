@@ -1,0 +1,29 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{CJKutf8}
+\renewcommand{\tablename}{表}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+%\usepackage{tcolorbox}
+%\tcbuselibrary{skins,breakable,raster}
+\usepackage{array}
+%\tcbset{fonttitle=\bfseries,breakable,
+%	colback=white,
+%	every box/.style={enhanced,
+%		before=\par\smallskip,after=\par\smallskip},
+%	every box on layer 2/.style={reset,every box,colback=yellow!10!white,
+%		drop fuzzy shadow}}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+%\graphicspath{{img/}}
+%\def\img#1#2{\begin{figure}[htb]\centering\includegraphics[width=0.7\columnwidth]{img/#1.png}\caption{#2}\label{fig:#1}\end{figure}}
+\def\img#1#2{\begin{tcolorbox}[title=#2]\includegraphics[width=\textwidth]{#1.png}\end{tcolorbox}}
+\def\pdf#1#2{\begin{tcolorbox}[title=#2]\includegraphics[width=\textwidth]{#1.pdf}\end{tcolorbox}}
+\usepackage{enumitem}
+\setlist{nosep}
+\begin{document}
+	\begin{CJK}{UTF8}{gbsn}
+	\title{计算机组成}
+	\date{}
+%	\begin{multicols}{3}

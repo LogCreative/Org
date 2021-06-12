@@ -1,0 +1,91 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{CJKutf8}
+\renewcommand{\tablename}{表}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable,raster}
+\usepackage{array}
+\tcbset{fonttitle=\bfseries,breakable,
+	colback=white,
+	every box/.style={enhanced,
+		before=\par\smallskip,after=\par\smallskip},
+	every box on layer 2/.style={reset,every box,colback=yellow!10!white,
+		drop fuzzy shadow}}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+\graphicspath{{img/}}
+%\def\img#1#2{\begin{figure}[htb]\centering\includegraphics[width=0.7\columnwidth]{img/#1.png}\caption{#2}\label{fig:#1}\end{figure}}
+\def\img#1#2{\begin{tcolorbox}[title=#2]\includegraphics[width=\textwidth]{#1.png}\end{tcolorbox}}
+\def\pdf#1#2{\begin{tcolorbox}[title=#2]\includegraphics[width=\textwidth]{#1.pdf}\end{tcolorbox}}
+\usepackage{enumitem}
+\setlist{nosep}
+\begin{document}
+	\begin{CJK}{UTF8}{gbsn}
+	\title{计算机组成}
+	\date{}
+	\begin{multicols}{3}
+		\maketitle
+		\section{微机}
+		\input{chapter/micro.tex}
+		\section{存储与I/O}
+		\input{chapter/memio.tex}
+		\section{80x86}
+		%\input{chapter/8086.tex}
+	\end{multicols}
+	\begin{twocolumn}
+%		\begin{multicols}{3}
+%		\begin{tcbraster}[raster columns=3, raster equal height,
+%			]
+		\img{von}{冯诺依曼结构}
+		\img{harvard}{哈佛结构}
+		\img{struct}{微机结构}
+		\img{sysstruct}{微机系统结构（哈佛结构）}
+		\img{memhier}{内存层级}
+		\img{memorg}{内存组织}
+		\begin{tcolorbox}[title=总线结构]
+		\img{singlebus}{单线结构}
+		\img{dualbus}{CPU-Central 双线结构}
+		\img{memdualbus}{Memory-Central 双线结构}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=寻址方式]
+			\img{memio}{存储器映像寻址方式}
+			\begin{tcolorbox}[title=I/O单独编址方式]
+				\img{isoiod}{单工地址线}
+				\img{isoiom}{多工地址线}
+			\end{tcolorbox}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=RAM]
+%			\begin{tcbraster}[raster columns=2,raster equal height=rows,]
+%				\img{DRAM}{DRAM}
+%				\img{SRAM}{SRAM}
+%			\end{tcbraster}
+			\includegraphics[width=\textwidth]{RAM.pdf}
+		\end{tcolorbox}
+		\pdf{DRAM16}{4M$\times$4 DRAM}
+		\pdf{pkg}{存储芯片封装}
+		\begin{tcolorbox}[title=存储位扩展]
+			\pdf{bitext}{256K$\times$8-bit: 8 256$\times$1-bit}
+			\img{bitext}{256K$\times$32-bit: 32 256K$\times$1-bit}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=存储字扩展]
+			\pdf{wordext}{1M$\times$8-bit: 4 group 256K$\times$1-bit}
+			\img{wordext}{2M$\times$8-bit: 8 group 256K$\times$8-bit}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=字与位同时扩展]
+			\img{wbext}{32位可寻址单元}
+			\img{wbextb}{1字节可寻址单元}
+		\end{tcolorbox}
+		\pdf{pref}{外设}
+		\pdf{iomod}{I/O模块}
+		\pdf{interrupt}{中断处理内存变化}
+		\pdf{DMAalter}{DMA架构}
+		\img{8086}{8086内部结构}
+		\img{8086l}{8086配置图}
+%		\end{tcbraster}
+%		\end{multicols}
+	\end{twocolumn}
+	\end{CJK}
+\end{document}

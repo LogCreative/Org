@@ -1,0 +1,65 @@
+\textbf{微机结构}
+\begin{itemize}
+	\item Input 输入
+	\item Output 输出
+	\item Memory 存储器
+	\item ALU 算术逻辑单元
+	\item Control unit 控制单元
+\end{itemize}
+
+\begin{table*}
+	\centering
+	\caption{微机概念差异}
+\begin{tabular}{|>{\bfseries}l|p{8cm}|}
+	\hline
+	微处理器 Microprocessor & 可以被微缩成集成电路规模的CPU电路，包含ALU,CU,寄存器 \\
+	\hline
+	微型计算机 Mircrocomputer & 微处理器,存储器,I/O,总线 \\
+	\hline
+	微型计算机系统 Microcomputer system & 以微型计算机为主体，配上I/O及系统软件就构成了微型计算机系统。 \\
+	\hline
+	微控制器 Microcontrollers & A microcontroller has a CPU in addition to a fixed amount of RAM, ROM, I/O ports on one single chip (\emph{e.g.} Cortex) \\
+	\hline
+	嵌入式系统 Embedded Systems & An embedded system uses a microcontroller or a microprocessor to do one task and one task only\\
+	\hline
+\end{tabular}
+\end{table*}
+
+\textbf{指令集}：CISC(1-n个字)，RISC(1个字)
+
+\textbf{字}：CPU一次可以处理的最大比特数
+
+\textbf{位扩展}：同一地址的位扩展，满足一个字的输出
+
+\textbf{字扩展}：增大字的量，选择不同的字，满足存储量需求
+
+\begin{table*}
+	\begin{minipage}{0.3\textwidth}
+		\centering
+		\caption{总线类型}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\bfseries 类型 &\bfseries 仲裁 &\bfseries 时序 \\
+			\hline
+			单工 & 集中式 & 同步 \\
+			多工 & 分布式 & 异步 \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.7\textwidth}
+		\centering
+		\caption{总线结构}
+		\begin{tabular}{|>{\bfseries}c|l|l|}
+			\hline
+			& \bfseries 优点 &\bfseries 缺点 \\
+			\hline
+			单线结构 & 简单 & 吞吐量低 \\
+			\hline
+			CPU-Central 双线结构 & 数据传输率高 & I/O与内存需要经过CPU \\
+			\hline
+			Memory-Central 双线结构 & CPU性能好 吞吐量高 &  \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+\end{table*}
+

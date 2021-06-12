@@ -1,0 +1,341 @@
+\documentclass[10pt]{article}
+\usepackage{geometry}
+\usepackage{CJKutf8}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+
+\numberwithin{equation}{section}
+\geometry{left=1.0cm,right=1.0cm,top=1.0cm,bottom=1.5cm}
+\title{Thermal Physics Sheet}
+\author{李子龙}
+\date{}
+\begin{document}
+\begin{multicols}{3}
+\begin{CJK}{UTF8}{song}
+\maketitle
+\section{压强}
+状态方程
+
+\begin{equation}
+  pV=\nu RT
+\end{equation}
+微观公式
+\begin{align}\nonumber
+  p=nkT=\frac{2}{3}n\bar{\varepsilon}&=\frac{2}{3}n\left(\frac{1}{2}m\bar{v^2}\right) \\ &=\frac{2}{3}n\left(\frac{3}{2}m\bar{v_x^2}\right)
+\end{align}
+范德瓦尔斯
+\begin{align}
+  \left(p+\nu^2 \frac{a}{V_m^2}\right)&(V-\nu b)=\nu RT \\
+  b&=4N_A \frac{4}{3}\pi \left( \frac{d}{2} \right)^2
+\end{align}
+Boltzmann
+\begin{align}
+p&=p_0 e^{-\frac{Mgz}{RT}}(\textrm{Const. }T) \\
+n&=n_0 e^{-\frac{\varepsilon_0}{kT}}(\textrm{Const. }T)
+\end{align}
+\section{分量}
+
+方均根(速率最大)
+\begin{align}
+  \sqrt{\bar{v^2}} &=\sqrt{\frac{3RT}{M}} \\
+  \sqrt{\bar{v_x^2}} &=\sqrt{\frac{RT}{M}}
+\end{align}
+均值(速率中等)
+\begin{align}
+  \bar{v}= & \sqrt{\frac{8RT}{\pi M}} \\
+  \bar{v_x}= & \sqrt{\frac{RT}{2\pi M}}
+\end{align}
+最可几速率(最概然速率,速率最小)
+\begin{equation}
+  v_p=\sqrt{\frac{2RT}{M}}
+\end{equation}
+(分量最概然速度大小为0.) \\
+Maxwell
+\begin{align}\nonumber
+  \frac{\textrm{d}N_v}{N} &=\left(\frac{m}{2\pi kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}4\pi v^2 \textrm{d}v \nonumber \\ &=f(v)\textrm{d}v \\
+  \frac{\textrm{d}N_{v_x}}{N} &=\left(\frac{m}{2\pi kT}\right)^{\frac{1}{2}}e^{-\frac{mv_x^2}{2kT}} \textrm{d}v \nonumber \\&=f(v_x)\textrm{d}v
+\end{align}
+碰撞
+\begin{align}
+N&=\frac{1}{4}n\bar{v}\\
+\Delta N_{0\sim\beta v_{p(x)}}&=\frac{N}{2} \textrm{erf} \left(\beta\right)\\
+\Delta N_{0\sim \beta v_{p}}&=N\left[ \textrm{erf} (\beta)-\frac{2}{\sqrt\pi}\beta e^{-\beta^2}\right] \\
+\textrm{erf} \left(\beta\right)&=\frac{2}{\sqrt\pi}\int_{0}^{\beta}{e^{-x^2}\textrm{d}x}
+\end{align}
+能量按自由度均分定理
+\begin{align}
+  \frac{1}{2}m\bar{v^2}&=\frac{3}{2}kT \\
+  \frac{1}{2}m\bar{v_x^2}&=\frac{1}{2}kT
+\end{align}
+\section{多项}
+摩尔平均总能量(平动、转动、振动)
+\begin{align}
+  {\bar{\varepsilon}}_{\textrm{m}}&=\frac{1}{2}\left(t+r+2s\right)RT \nonumber \\ \nonumber
+  &=\frac{3}{2}RT\textrm{(single)} \nonumber \\&=\frac{5}{2}RT\textrm{(hard dual)} \nonumber\\
+  &=\frac{7}{2}RT\textrm{(elastic dual)} \nonumber \\ &=\frac{6}{2}RT\textrm{(multi)}
+\end{align}
+热容
+\begin{align}
+  C&=mc \\
+  C_{\textrm{m}}&=Mc \\
+  C_{V,\textrm{m}}&=\frac{1}{2}\left(t+r+2s\right)R
+\end{align}
+扩散
+\begin{align}
+  \sigma&=\pi d^2 \\
+  \bar{Z}&=\sqrt2\sigma\bar{v}n \\
+  \bar{\lambda}&=\frac{1}{\sqrt2\sigma n}
+\end{align}
+分子按自由程的分布：$N_0$中自由程大于$x$的分子数，求微分得连续分布
+\begin{equation}
+  N=N_0 e^{-\frac{x}{\bar{\lambda}}}
+\end{equation}
+粘滞、导热、扩散系数
+\begin{align}
+  \textrm{d}y&=-c\left(\frac{\textrm{d}x}{\textrm{d}z}\right)_{z_0}\textrm{d}S\textrm{d}t \\
+  \eta&=\frac{1}{3}\rho\bar{v}\bar{\lambda} \\
+  \kappa&=\eta c\\
+  D&=\frac{\eta}{\rho} \\
+  c&=\frac{C_{V,\textrm{m}}\nu}{m}
+\end{align}
+
+\section{热力学定律}
+\paragraph{第一定律} 加进一个的系统中的热量+对系统所做的功=系统内能的增加
+\begin{equation}
+  Q+A=\Delta U
+\end{equation}
+\paragraph{第二定律}  不可能有这样一个过程，它的唯一结果\textbf{只是}从一个热库取出热量，并把它转化为功.\\
+没有任何一台热机，在从$T_1$取得热量$Q_1$,而在$T_2$放出热量$Q_2$的过程中所做的功比可逆机更大.对于可逆机，
+\begin{equation}
+  W=Q_1-Q_2=Q_1\left(1-\frac{T_2}{T_1}\right)
+\end{equation}
+\paragraph{系统的熵}
+
+如果$\Delta Q$是可逆地加在温度为$T$的系统中的热量，那么这个系统的熵增为
+  \begin{equation}
+  \Delta S=\frac{\Delta Q}{T}
+  \end{equation}
+  熵为：
+  \begin{equation}
+    S(\bm{V},\bm{T})=R\left(\ln \bm{V}+\frac{1}{\gamma-1}\ln \bm{T} \right)+a
+  \end{equation}
+  当$T=0$时，$S=0$(\textbf{第三定律}).此时的熵定义为：\\
+  在\textbf{可逆变化}中，系统所有部分(包括热库)的总熵\textbf{不变}.\\
+  在\textbf{不可逆变化}中，系统的总熵始终不断\textbf{增加}.\textbf{无摩擦的准静态过程}是可逆的.
+
+\paragraph{通用公式}
+\begin{align}
+  Q_V=\Delta U&=\nu C_{V,\textrm{m}}\Delta T\\
+  Q_p=\Delta H&=\nu C_{p,\textrm{m}}\Delta T \\
+  A&=-\int_{V_1}^{V_2}p\textrm{d}V \\
+  H& =U+pV \\
+  T\textrm{d}S&=\textrm{d}U+p\textrm{d}V
+\end{align}
+\textbf{理想气体}
+  \begin{align}
+  \Delta U&=\nu C_{V,\textrm{m}}\Delta T \\
+  C_{p,\textrm{m}}-C_{V,\textrm{m}}&=R \\
+  \Delta H &= \nu C_{p,\textrm{m}}\Delta T
+  \end{align}
+\textbf{范德瓦尔斯气体}
+  \begin{align}
+  \Delta U&= \nu \left[ C_{V,\textrm{m}}\Delta T-a\Delta \left( \frac{1}{V_{\textrm{m}}} \right) \right]\\
+  C_{p,\textrm{m}}-C_{V,\textrm{m}}&=\frac{R}{1-\frac{2a(V_{\textrm{m}}-b)^2}{RTV_{\textrm{m}}^3}}\\
+  \Delta H_{\textrm{m}} &= (C_{V,m\textrm{}}+R)\Delta T -a \Delta \left( \frac{1}{V_{\textrm{m}}} \right)\nonumber \\&+\frac{RT_2b}{V_2-b}-\frac{RT_1b}{V_1-b}
+  \end{align}
+
+\section{热力学过程}
+$A$:外界对系统所做的功\\
+$Q$:系统从外界吸收的热量\\
+$C_m$:摩尔热容\\
+$\Delta S$:熵变\\
+(理想气体)
+\begin{center}
+    \fbox{等容过程 $V=$Const.}
+\end{center}
+\begin{align}
+  A&=0 \\
+  Q&=\nu C_{V,\textrm{m}}(T_2-T_1) \\
+  C_{V,\textrm{m}}&=\frac{R}{\gamma-1} \\
+  \Delta S&=\nu C_{V,\textrm{m}}\ln\frac{T_2}{T_1}
+\end{align}
+\begin{center}
+    \fbox{等压过程 $p=$Const.}
+\end{center}
+\begin{align}
+  A&=-p(V_{2}-V_{1})\nonumber \\ &=-\nu R(T_2-T_1) \\
+  Q&=\nu C_{p,\textrm{m}}(T_2-T_1) \\
+  C_{V,\textrm{m}}&=\frac{\gamma R}{\gamma-1} \\
+  \Delta S&=\nu C_{p,\textrm{m}}\ln\frac{T_2}{T_1}
+\end{align}
+\begin{center}
+    \fbox{等温过程 $T=$Const.}
+\end{center}
+\begin{align}
+  A&=-p_1V_{1}\ln\frac{V_{2}}{V_{1}} \nonumber \\&=-\nu RT_1\ln\frac{V_{2}}{V_{1}} \\
+  Q&=-A \\
+  C_{\textrm{m}}&=\infty \\
+  \Delta S&=\nu R\ln\frac{V_2}{V_1}
+\end{align}
+\begin{center}
+    \fbox{绝热过程 $Q=0$}
+\end{center}
+泊松方程
+\begin{align}
+  pV^{\gamma}&=\textrm{Const.} \\
+  TV^{\gamma-1}&=\textrm{Const.} \\
+  \frac{p^{\gamma -1}}{T^{\gamma}}&=\textrm{Const.}
+\end{align}
+\begin{align}
+  A&= \frac{p_1V_{1}}{\gamma -1}\left[\left(\frac{V_{1}}{V_{2}}\right)^{\gamma -1}-1\right]\nonumber\\ &=\nu C_{V,\textrm{m}}(T_2-T_1) \\
+  Q&=0 \\
+  C_m&=0 \\
+  \Delta S&=0
+\end{align}
+\begin{center}
+    \fbox{多方过程 $pV^n=$Const.}
+\end{center}
+
+\begin{align}
+  A&=\frac{p_1V_{1}}{n -1}\left[\left(\frac{V_{1}}{V_{2}}\right)^{n -1}-1\right]\nonumber\\ &=\frac{\nu R}{n-1}(T_2-T_1) \\
+  Q&=\nu \left( C_{V,\textrm{m}}-\frac{R}{n-1} \right) (T_2-T_1)\\
+  C_m&=\frac{\gamma -n}{1-n}C_{V,\textrm{m}} \\
+  \Delta S&=\nu C_{V,\textrm{m}} (\gamma -n)\ln \frac{V_{2}}{V_{1}}
+\end{align}
+\begin{center}
+    \fbox{自由膨胀 $A=0$}
+\end{center}
+这一过程不是准静态过程.
+\begin{center}
+    \fbox{绝热节流 $H=$Const.}
+\end{center}
+
+焦汤系数
+\begin{equation}
+  \alpha \equiv \lim_{\Delta p \rightarrow 0} \left( \frac{\Delta T}{\Delta p} \right)_H = \left(\frac{\partial T}{\partial p} \right)_H
+\end{equation}
+
+
+
+
+\begin{center}
+\begin{tabular}{ccc}
+  \hline
+  $\alpha$ & 类型(室温下)  & 效应\\
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $+$ & 氮、氧、空气 & 制冷效应、正效应\\
+  $-$ & 氢气 & 制温效应、负效应 \\
+  0 & 理想气体 & 零效应$^{*}$ \\
+  \hline
+
+\end{tabular}
+\begin{flushleft}
+\small $^{*}$ 非理想气体的对应温度为\textbf{转换温度}.上转换温度$T^{\circ}=\frac{2a}{Rb}$.
+\end{flushleft}
+\end{center}
+
+
+
+\section{其他热力学方程}
+效率、冷却系数
+\begin{align}
+  \eta&=\frac{A}{Q_1}=1-\frac{|Q_2|}{Q_1} \\
+  \varepsilon &=\frac{Q_2}{Q_1-Q_2}
+\end{align}
+卡诺、可逆
+\begin{align}
+  \eta&=1-\frac{T_2}{T_1} \\
+  \varepsilon &=\frac{T_2}{T_1-T_2} \\
+  \oint_{\textrm{invertible cycle}}\frac{\textrm{d}Q}{T}&=0
+\end{align}
+热力学定律常用(以及 4.9)
+\begin{align}
+  \left(\frac{\partial U}{\partial V}\right)_V&=T\left(\frac{\partial p}{\partial T}\right)_V-p \\
+  \textrm{d}U&=\left(\frac{\partial U}{\partial T}\right)_V \textrm{d}T+\left(\frac{\partial U}{\partial V}\right)_T \textrm{d}U
+\end{align}
+熵
+\begin{align}
+  W&=\frac{N!}{\Pi_{i=1}^n N_i!} \\
+  S&=k\ln W
+\end{align}
+大气温度梯度
+\begin{align}
+  \frac{\textrm{d}T}{\textrm{d}z}&=-\frac{\gamma-1}{\gamma} \frac{T}{p} \rho g\\
+  \textrm{d}p&=-\frac{Mgp}{RT}\textrm{d}z(\textrm{Boltzmann})\\
+  h&=\frac{C_{p,\textrm{m}}T_0}{Mg}\left[1-\left(\frac{p}{p_0}\right)^{\frac{\gamma -1}{\gamma}}\right]
+\end{align}
+\section{相变}
+克拉珀龙方程衍生式
+\begin{align}
+  \frac{\textrm{d}p}{\textrm{d}T}&=\frac{l}{T(v_2-v_1)} \nonumber\\
+  &=\frac{u_2-u_1+p(v_2-v_1)}{T(v_2-v_1)} \nonumber \\
+  &\approx \frac{l}{Tv_2} \nonumber \\
+  &\approx \frac{\Delta p}{\Delta T}
+\end{align}
+理想气体蒸气压方程
+\begin{equation}
+  \ln p=-\frac{L}{RT}+\textrm{Const.}
+\end{equation}
+范德瓦尔斯相变临界点参量
+\begin{equation}
+  \left\{
+    \begin{align}
+    T_k&=\frac{8a}{27bR}\\
+    V_{\textrm{m}k}&=3b \\
+    p_{k}&=\frac{a}{27b^2}
+    \end{align} %ignore the error
+  \right.
+\end{equation}
+\begin{equation}
+  \frac{RT_k}{p_kV_{\textrm{m}k}}=\frac{8}{3}
+\end{equation}
+\section{常数}
+\begin{equation}
+  R=\frac{k}{N_A}
+\end{equation}
+\begin{center}
+\begin{tabular}{cc}
+  \hline
+   & Value \\
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $R$ & 8.314\\
+  $k$ & $1.381\times 10^{-23}$\\
+  $N_A$ & $6.022\times 10^{23}$ \\
+  \hline
+\end{tabular}
+\end{center}
+\begin{equation}
+  n=\frac{N_A}{V_{\textrm{m}}}
+\end{equation}
+\begin{center}
+\begin{tabular}{cc}
+  \hline
+   & Value \\
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $V_{\textrm{m}}$(STP) & 22.41\\
+  \hline
+\end{tabular}
+\end{center}
+\begin{equation}
+  A=eU
+\end{equation}
+\begin{center}
+\begin{tabular}{cc}
+  \hline
+   & Value \\
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $e$ & $1.602\times 10^{-19}$C\\
+  $e$V & $1.602\times 10^{-19}$J\\
+  \hline
+\end{tabular}
+\end{center}
+\end{CJK}
+\end{multicols}
+\end{document} 

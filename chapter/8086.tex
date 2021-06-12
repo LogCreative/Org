@@ -1,0 +1,83 @@
+\input{../header.tex}
+\begin{description}
+\item[8086] 16-bit, 20-bit address.
+\item[8088] 16-bit internal, 8-bit external.
+\end{description}
+
+只有两段：
+\begin{description}
+	\item[BIU](Bus Interface Unit) 连接内存与外设。
+	\item[EU](Execution Unit) 执行之前获取的指令。
+\end{description}
+
+\begin{table*}
+	\centering
+	\caption{8086 寄存器}
+	\begin{tabular}{|>{\bfseries}l|c|l|}
+		\hline
+		Category & \bfseries Bits &\bfseries Register Names \\
+		\hline
+		General & 16 & \texttt{AX}(Accumulator), \texttt{BX}(Base), \texttt{CX}(Count), \texttt{DX}(Data) \\
+		\hline
+		& 8 & \texttt{AH}, \texttt{AL}, \texttt{BH}, \texttt{BL}, \texttt{CH}, \texttt{CL}, \texttt{DH}, \texttt{DL} \\
+		\hline
+		Pointer & 16 & \texttt{SP}(Stack Pointer), \texttt{BP}(Base Pointer) \\
+		\hline
+		Segment & 16 & \texttt{CS}(Code Segment), \texttt{DS}(Data Segment), \texttt{SS}(Stack Segment), \texttt{ES}(Extra Segment) \\
+		\hline
+		Instruction & 16 & \texttt{IP}(Instruction Pointer) \\
+		\hline
+		Flag & 16 & \texttt{FR}(Flag Register) \\
+		\hline
+	\end{tabular}
+\end{table*}
+
+双工作模式
+\begin{description}
+	\item[最小模式] $\rm MN/\overline{MX}=1$ 单 CPU。
+	\item[最大模式] $\rm MN/\overline{MX}=0$ 多 CPU(8086+8087)，8288控制芯片。 
+\end{description}
+
+\begin{table*}
+	\centering
+	\caption{8086 接脚}
+	\begin{tabular}{|>{\ttfamily}c|p{13em}|c|c|}
+		\hline
+		\bfseries Signal &\bfseries Description &\ttfamily 0 &\ttfamily 1 \\
+		\hline
+		ALE & Address Latch Enabled &  & Latched  \\
+		\hline
+		$\tt \overline{BHE}$ & Bank High Enabled & $\rm AD_8\sim \rm AD_{15}$ Enabled & $\rm AD_8\sim\rm AD_{15}$ Disabled \\
+		\hline
+		$\tt DT/\overline{R}$ & direction of Data Transfer & sending data & receiving data \\
+		\hline
+		$\tt \overline{DEN}$ & Data transceiver ENabled & enabled & disabled \\
+		\hline
+		$\tt \overline{WR}$ & WRiting to Mem/IO & writing & \\
+		\hline
+		$\tt \overline{RD}$ & ReaDing from mem/IO & reading & \\
+		\hline
+		$\tt M/\overline{IO}$ & CPU accessing Memory / IO & IO & Memory \\
+		\hline
+		$\tt INTR$ & INTerrupt Request, maskable by clearing IF &  & Requesting \\
+		\hline
+		$\tt \overline{INTA}$ & INTerrupt Acknowledge &  & Acknowledge \\
+		\hline
+		$\tt NMI$ & Non-Maskable Interrupt, CPU is interrupted after finishing the current instruction; cannot be masked by software &  & will be interrupted \\
+		\hline
+		$\tt HOLD$ & HOLD the bus request &  & hold \\
+		\hline
+		HOLDA & HoLD request acknowledge &  & hold req ack \\
+		\hline
+		$\tt \overline{TEST}$ & for debug & test &  \\
+		\hline
+		READY & mem/IO is READY for transfer &  & ready \\
+		\hline
+		RESET & reset the CPU, IP, DS, SS, ES and 6 inst in instruction queue are cleared &  & CS=0FFFFH \\
+		\hline
+	\end{tabular}
+\end{table*}
+
+
+
+\input{../ending.tex}
