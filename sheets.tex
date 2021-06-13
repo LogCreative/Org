@@ -163,11 +163,24 @@
 			\end{tabular}
 		\end{tcolorbox}
 		\img{8255}{8255 外设芯片}
+		\img{8253}{8253 计时器}
+		\begin{tcolorbox}[title=8253 计时器模式]
+			\img{Mode0}{Mode 0---Interrupt on Terminal Count}
+			\img{Mode1}{Mode 1---Hardware Retriggerable One-shot}
+			\img{Mode2}{Mode 2---Rate Generator}
+			\img{Mode3}{Mode 3---Square Wave Rate Generator}
+			\img{Mode4}{Mode 4---Software Triggered Strobe}
+			\img{Mode5}{Mode 5---Hardware Triggered Strobe (Retriggerable)}
+		\end{tcolorbox}
 		\code{simpleio.asm}{实验一}{读取开关量状态取反后送显示}
 %		\code{traffic.asm}{实验一}{交通灯}
 		\code{converter.asm}{样例}{转换小写至大写}
 		\code{banks.asm}{实验二}{奇偶存储奇偶数}
 		\code{digit.asm}{样例}{输入送数码管显示}
+		\code{8255.asm}{实验三}{8255送显示}
+		\code{8253.asm}{实验三}{8253计时器}
+		\code{IVT.asm}{实验三}{中断向量表(IVT)}
+		\code{ISR.asm}{实验三}{中断服务程序(ISR)}
 %		\end{tcbraster}
 %		\end{multicols}
 	\end{twocolumn}
