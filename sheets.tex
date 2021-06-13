@@ -101,7 +101,10 @@
 			\img{wbext}{32位可寻址单元}
 			\img{wbextb}{1字节可寻址单元}
 		\end{tcolorbox}
-		\pdf{pref}{外设}
+		\begin{tcolorbox}[title=外设]
+			\centering
+			\includegraphics[width=0.7\linewidth]{pref.pdf}
+		\end{tcolorbox}
 		\pdf{iomod}{I/O模块}
 		\pdf{interrupt}{中断处理内存变化}
 		\pdf{DMAalter}{DMA架构}
@@ -135,10 +138,10 @@
 		\begin{tcolorbox}[title=RAM\&ROM]
 			\centering
 %			\begin{tcolorbox}[title=RAM]
-				\includegraphics[width=0.45\textwidth]{RAMC.png}
+				\includegraphics[width=0.3\textwidth]{RAMC.png}
 %			\end{tcolorbox}
 %			\begin{tcolorbox}[title=ROM]
-				\includegraphics[width=0.45\textwidth]{ROMC.png}
+				\includegraphics[width=0.3\textwidth]{ROMC.png}
 %			\end{tcolorbox}
 		\end{tcolorbox}
 		\begin{tcolorbox}[title=74LS138 38译码器]
@@ -162,16 +165,66 @@
 				\hline
 			\end{tabular}
 		\end{tcolorbox}
-		\img{8255}{8255 外设芯片}
-		\img{8253}{8253 计时器}
+		\begin{tcolorbox}[title=8255 外设芯片]
+			\centering
+			\includegraphics[width=0.7\linewidth]{8255.png}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=8253 计时器]
+			\centering
+			\includegraphics[width=0.7\linewidth]{8253.png}
+		\end{tcolorbox}
 		\begin{tcolorbox}[title=8253 计时器模式]
 			\img{Mode0}{Mode 0---Interrupt on Terminal Count}
 			\img{Mode1}{Mode 1---Hardware Retriggerable One-shot}
 			\img{Mode2}{Mode 2---Rate Generator}
-			\img{Mode3}{Mode 3---Square Wave Rate Generator}
+			\begin{tcolorbox}[title=Mode 3---Square Wave Rate Generator]
+				\includegraphics[width=\linewidth]{Mode3.png}
+			\end{tcolorbox}
 			\img{Mode4}{Mode 4---Software Triggered Strobe}
 			\img{Mode5}{Mode 5---Hardware Triggered Strobe (Retriggerable)}
 		\end{tcolorbox}
+		\img{IVT}{8086/88 中断向量表}
+		\begin{tcolorbox}[title=同步与异步]
+			\begin{tabular}{|p{8em}|p{8em}|}
+				\hline
+				\bfseries 异步 &\bfseries 同步 \\
+				\hline
+				一次传一个字节 & 一次传一块数据 \\
+				\hline
+				使用start bit将接发者同步 & 使用 synch characters 将接发者同步 \\
+				\hline
+			\end{tabular}
+			\img{async}{异步}
+			\img{sync}{同步}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=8251 接口]
+			\centering
+			\includegraphics[width=0.7\linewidth]{8251.png}
+			\begin{tabular}{|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|c|}
+				\hline
+				$\rm C/\overline{D}$ & $\rm\overline{RD}$ & $\rm\overline{WR}$ & $\rm\overline{CS}$ &\bfseries Function \\
+				\hline
+				0 & 0 & 1 & 0 & 8251 Data $\rightarrow$ data bus \\
+				\hline
+				0 & 1 & 0 & 0 & 8251 Bus $\rightarrow$ 8251 data \\
+				\hline
+				1 & 0 & 1 & 0 & status $\rightarrow$ data bus \\
+				\hline
+				1 & 1 & 0 & 0 & data bus $\rightarrow$ control \\
+				\hline
+				* & 1 & 1 & 0 & data bus $\rightarrow$ 3-state \\
+				\hline
+				* & * & * & 1 & data bus $\rightarrow$ 3-state \\
+				\hline
+			\end{tabular}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=8251 模式字]
+			\img{8251async}{异步}
+			\img{8251sync}{同步}
+		\end{tcolorbox}
+		\img{8251comm}{8251 命令字}
+		\img{8251stat}{8251 状态字}
+		\img{8251op}{8251 运转}
 		\code{simpleio.asm}{实验一}{读取开关量状态取反后送显示}
 %		\code{traffic.asm}{实验一}{交通灯}
 		\code{converter.asm}{样例}{转换小写至大写}
@@ -181,6 +234,8 @@
 		\code{8253.asm}{实验三}{8253计时器}
 		\code{IVT.asm}{实验三}{中断向量表(IVT)}
 		\code{ISR.asm}{实验三}{中断服务程序(ISR)}
+		Use 8251 to transfer 256 characters in async mode, assuming that the port addr are 208H and 209H, the baud factor is 16, and 1 stop bit, 1 start bit, no parity bit, and 8-bit character are used.
+		\code{8251.asm}{样例}{8251 编程}
 %		\end{tcbraster}
 %		\end{multicols}
 	\end{twocolumn}

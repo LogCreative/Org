@@ -97,6 +97,10 @@ AD15～AD0在T2～T4期间送上欲输出的数据,而无高阻态.
 		\scriptsize
 		After reset, all flags are cleared which means you (as a programmer) have to set IF in your program if allow INTR.
 	\end{tcolorbox}
+	\begin{verbatim}
+		CLI ;clears IF
+		STI ;sets IF
+	\end{verbatim}
 	\item[DF] (Direction Flag): 方向符 indicates the direction of string operations
 	\item[TF] (Trap Flag): 陷阱符 when set it allows the program to single-step, meaning to execute one instruction at a time for debugging purposes
 \end{description}

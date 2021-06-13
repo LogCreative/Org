@@ -2,6 +2,10 @@
 \paragraph{Checksum} 不进位地将所有的字节相加，取和的二的补码。
 \paragraph{Parity bit} 考虑原有位和奇偶校验位1的个数的总和。偶校验：当序列中有奇数个1时设置为1；奇校验：当序列中有偶数个1时设置为1。
 \paragraph{CRC} for disks and the Internet.
+$k$-bit data, $n$-bit CRC:
+\begin{equation}
+	CRC = (M(X)\times X^n) \bmod G(X)
+\end{equation}
 
 \begin{table*}
 	\centering
@@ -169,3 +173,61 @@
 \end{tabular}
 \end{table*}
 
+\subsection{中断 8259}
+
+8086/8088 有 256 个中断类型。
+\begin{verbatim}
+	INT 00H
+	INT 0FFH
+\end{verbatim}
+
+中断向量表(IVT)
+\begin{verbatim}
+	CS = Type * 4
+	IP = Type * 4 + 2
+\end{verbatim}
+
+中断服务程序(ISR)
+
+\begin{table}[H]
+	\begin{tabular}{|c|p{6em}|p{6em}|}
+		\hline
+		&\ttfamily CALL FAR &\ttfamily INT \\
+		\hline
+		jump & anywhere $\leq$ 1MB & a fix location \\
+		\hline
+		occurence & in the sequence of instructions & an external interrupt at any time \\
+		\hline
+		maskable & cannot be masked (disabled) & can be masked \\
+		\hline
+		save &\ttfamily CS:IP &\ttfamily FR+CS:IP \\
+		\hline
+		return  &\ttfamily RETF &\ttfamily IRET \\
+		\hline
+	\end{tabular}
+\end{table}
+
+中断优先级：
+\begin{equation}\nonumber
+	\rm	INT > NMI > INTR
+\end{equation}
+
+高优先级中断（数字小的）可以打断低优先级中断，低优先级中断只能在 EOI 之后才能够打断高优先级中断。
+\begin{verbatim}
+	STI	(EOI) IRET
+\end{verbatim}
+
+\subsection{连接 8251}
+\begin{tabular}{|p{4em}|p{5em}|p{5em}|}
+	\hline
+	&\bfseries Parrallel &\bfseries Serial \\
+	\hline
+	transfer & 每一位用一条线 & 只用一条线 \\
+	\hline
+	bit & 一般用8条以上的线 & 线上每次传一位 \\
+	\hline
+	control signal & 需要额外的控制信号 & 不需要 \\
+	\hline
+	usage & 快速 昂贵 短距离 & 便宜 慢速 长距离 \\
+	\hline
+\end{tabular}
