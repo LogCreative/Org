@@ -126,7 +126,7 @@
 		\hline
 	\end{tabular}
 \end{table}
-不需要比较的跳转：
+其他跳转：
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|>{\ttfamily}l|>{\ttfamily}l|l|}
@@ -139,13 +139,13 @@
 		\hline
 		JNO & OF=0 & 没有溢出 \\
 		\hline
-		JNP/JPO & PF=0 & 奇校验 \\
+		JNP/JPO & PF=0 & 奇数个1 \\
 		\hline
 		JNS & SF=0 & 不是负数 \\
 		\hline
 		JP & OF=1 & 溢出 \\
 		\hline
-		JP/JPE & PF=1 & 偶校验 \\
+		JP/JPE & PF=1 & 偶数个1 \\
 		\hline
 		JS & SF=1 & 负数 \\
 		\hline

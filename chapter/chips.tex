@@ -1,0 +1,24 @@
+\subsection{存储器}
+\paragraph{Checksum} 不进位地将所有的字节相加，取和的二的补码。
+\paragraph{Parity bit} 考虑原有位和奇偶校验位1的个数的总和。偶校验：当序列中有奇数个1时设置为1；奇校验：当序列中有偶数个1时设置为1。
+\paragraph{CRC} for disks and the Internet.
+
+\begin{table*}
+	\centering
+	\caption{存储器访问}
+	\begin{tabular}{|>{\ttfamily}l|>{\ttfamily}c|>{\ttfamily}c|c|}
+		\hline
+		 & $\rm \overline{BHE}$ & A0 & 访问 \\
+		\hline
+		MOV AL, [100h] & 1 & 0 & D7-D0 \\
+		\hline
+		MOV AL, [101h] & 0 & 1 & D15-D8 \\
+		\hline
+		MOV AX, [100h] & 0 & 0 & D15-D0 \\
+		\hline
+		\multirow{2}{*}{MOV AX, [101h]} & 0 & 1 & D15-D8 \\
+		\cline{2-4}
+		& 1 & 0 & D7-D0 \\
+		\hline
+	\end{tabular}
+\end{table*}

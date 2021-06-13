@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{xcolor}
 \usepackage[colorlinks]{hyperref}
 \usepackage{caption}
@@ -54,6 +55,8 @@
 		\input{chapter/8086.tex}
 		\section{汇编}
 		\input{chapter/assemb.tex}
+		\section{芯片}
+		\input{chapter/chips.tex}
 	\end{multicols}
 	\begin{twocolumn}
 %		\begin{multicols}{3}
@@ -129,6 +132,36 @@
 			\img{dt}{Data Bus Transceiver}
 		\end{tcolorbox}
 		\img{buscycle}{8086/88 总线周期}
+		\begin{tcolorbox}[title=RAM\&ROM]
+			\centering
+%			\begin{tcolorbox}[title=RAM]
+				\includegraphics[width=0.45\textwidth]{RAMC.png}
+%			\end{tcolorbox}
+%			\begin{tcolorbox}[title=ROM]
+				\includegraphics[width=0.45\textwidth]{ROMC.png}
+%			\end{tcolorbox}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=74LS138 38译码器]
+			\includegraphics[height=4cm]{38G.png}
+			\includegraphics[height=4cm]{38T.png}
+		\end{tcolorbox}
+		\begin{tcolorbox}[title=8086存储组织]
+			\centering
+			\includegraphics[width=\linewidth]{eobanks.png}
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				$\rm \overline{BHE}$ & A0 &  &  \\
+				\hline
+				0 & 0 & Even word & D0-D15 \\
+				\hline
+				0 & 1 & Odd byte & D8-D15 \\
+				\hline
+				1 & 0 & Even byte & D0-D7 \\
+				\hline
+				1 & 1 & None &  \\
+				\hline
+			\end{tabular}
+		\end{tcolorbox}
 		\code{simpleio.asm}{实验一}{读取开关量状态取反后送显示}
 		\code{traffic.asm}{实验一}{交通灯}
 		\code{converter.asm}{样例}{转换小写至大写}
@@ -136,7 +169,4 @@
 %		\end{multicols}
 	\end{twocolumn}
 	\end{CJK}
-	% \begin{CJK}{UTF8}{song}
-	% 	\code{simpleio.asm}
-	% \end{CJK}
 \end{document}
