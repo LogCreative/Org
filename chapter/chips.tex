@@ -22,3 +22,75 @@
 		\hline
 	\end{tabular}
 \end{table*}
+
+\subsection{外设}
+
+\begin{table*}
+\begin{minipage}{0.4\textwidth}
+	\centering
+	\caption{8255 功能信号}
+\begin{tabular}{|ccc|cc|c|}
+	\hline
+	$\rm \overline{CS}$ & $\rm A_1$ & $\rm A_0$ & $\rm \overline{RD}$ & $\rm \overline{WR}$ &\bfseries Function \\
+	\hline
+	0 & 0 & 0 & 0 & 1 & PA$\rightarrow$Data bus \\
+	\hline
+	0 & 0 & 1 & 0 & 1 & PB$\rightarrow$Data bus \\
+	\hline
+	0 & 1 & 0 & 0 & 1 & PC$\rightarrow$Data bus \\
+	\hline
+	0 & 0 & 0 & 1 & 0 & Data bus$\rightarrow$PA \\
+	\hline
+	0 & 0 & 1 & 1 & 0 & Data bus$\rightarrow$PB \\
+	\hline
+	0 & 1 & 0 & 1 & 0 & Data bus$\rightarrow$PC \\
+	\hline
+	0 & 1 & 1 & 1 & 0 & Data bus$\rightarrow$CR \\
+	\hline
+	1 &  &  & 1 & 1 & $\rm D_0 \sim D_7$ in float \\
+	\hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\centering
+	\caption{8255 模式}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		&\bfseries Mode 0 &\bfseries Mode 1 &\bfseries Mode 2 &\bfseries BSR \\
+		\hline\hline
+		PCU & $\rm PC_7 \sim PC_4$ & $\rm PC_7 \sim PC_3$ & $\rm PC_7 \sim PC_3$&  \\
+		\hline
+		PCL &$\rm PC_3 \sim PC_0$&$\rm PC_2 \sim PC_0$&  &  \\
+		\hline\hline
+		PA & I/O & I/O & I\&O & I \\
+		\hline
+		PB & I/O & I/O &  & I \\
+		\hline
+		PCU & I/O & Handshake for PA & Handshake for PA &\multirow{2}{*}{O}\\
+		\cline{1-4}
+		PCL & I/O & Handshake for PB &  & \\
+		\hline
+	\end{tabular}
+\end{minipage}
+
+	\centering
+	\caption{8255 模式字(CR)}
+	\begin{tabular}{|>{\ttfamily}c|c|c|c|c|c|c|c|c|}
+		\hline
+		& D7 & D6 & D5 & D4 & D3 & D2 & D1 & D0 \\
+		\hline\hline
+		& 1 & Group A & Group A & PA & PCU & Group B & PB & PCL \\
+		\hline
+		0 &  &\multicolumn{2}{c|}{00 Mode 0 Simple I/O} & Output & Output & Mode 0 & Output & Output \\
+		\hline
+		1 & Input/Output modes & 1* Mode 2 & 01 Mode 1 & Input & Input & Mode  1 & Input & Input \\
+		\hline\hline
+		& 0 & * & * & * & PC & PC & PC & Set \\
+		\hline
+		0 & BSR mode &  &  &  &\multicolumn{3}{c|}{000 $\rm PC_0$} & Reset \\
+		\hline
+		1 &  &  &  &  & \multicolumn{3}{c|}{111 $\rm PC_7$} & Set \\
+		\hline
+	\end{tabular}
+\end{table*}
+
